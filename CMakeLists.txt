@@ -156,7 +156,14 @@ if(WITH_PROT_MCB)
 endif()
 
 # Dependencies
-set(sercomm_DIR "/home/surajcha/codebase/ingenialink/external/sercomm/bin/debian/lib/cmake/sercomm")
+if(UNIX)
+	set(sercomm_DIR "/home/surajcha/codebase/ingenialink/external/sercomm/bin/debian/lib/cmake/sercomm")
+elseif(WIN32)
+	set(sercomm_DIR         "C:\\Users\\tyros\\codebase\\ingenialink\\external\\sercomm\\bin\\lib\\cmake\\sercomm")
+	set(LIBXML2_LIBRARY   "C:\\Users\\tyros\\codebase\\ingenialink\\external\\libxml2\\bin\\bin")
+	set(LIBXML2_LIBRARIES     ${LIBXML2_LIBRARY})
+	set(LIBXML2_INCLUDE_DIR "C:\\Users\\tyros\\codebase\\ingenialink\\external\\libxml2\\bin\\include\\libxml")
+endif()
 find_package(sercomm CONFIG REQUIRED)
 target_link_libraries(ingenialink PRIVATE sercomm)
 
